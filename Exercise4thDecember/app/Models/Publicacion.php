@@ -11,4 +11,10 @@ class Publicacion extends Model
 
     // Nombre personalizado de la tabla
     protected $table = 'publicaciones';
+
+    public function comentarios()
+{
+    return $this->hasMany(Comentario::class, 'publicacion_id');
+}
+
 }

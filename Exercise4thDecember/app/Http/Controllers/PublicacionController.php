@@ -83,5 +83,30 @@ class PublicacionController extends Controller
     return redirect()->back()->with('success', 'Publicación actualizada correctamente.');
 }
 
+public function eliminar_publicacion($id)
+{
+    // Buscar la publicación por ID
+    $publicacion = Publicacion::find($id);
+
+    if (!$publicacion) {
+        return redirect()->back()->with('error', 'Publicación no encontrada.');
+    }
+
+    // Eliminar los comentarios asociados a esta publicación
+    $publicacion->comentarios()->delete();
+
+    // Eliminar la imagen asociada si existe
+    if ($publicacion->imagen && file_exists(public_path($publicacion->imagen))) {
+        unlink(public_path($publicacion->imagen));
+    }
+
+    // Eliminar la publicación
+    $publicacion->delete();
+
+    // Redirigir con mensaje de éxito
+    return redirect()->back()->with('success', 'Publicación y sus comentarios eliminados correctamente.');
+}
+
+
     
 }

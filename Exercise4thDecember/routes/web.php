@@ -67,3 +67,7 @@ Route::put('/actualizar_comentario/{id}', [ComentarioController::class, 'actuali
 Route::delete('/eliminar_comentario/{id}', [ComentarioController::class, 'eliminar_comentario']);
 
 
+//eliminar las publis
+Route::delete('/eliminar_publicacion/{id}', [PublicacionController::class, 'eliminar_publicacion']);
+
+
