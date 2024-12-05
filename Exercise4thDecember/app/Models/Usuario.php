@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable; 
-use Illuminate\Database\Eloquent\Factories\HasFactory; // Importar HasFactory
+use Illuminate\Database\Eloquent\Factories\HasFactory; // Importamos HasFactory
 
 class Usuario extends Authenticatable // Cambiamos Eloquent a Authenticatable
 {

@@ -36,4 +36,40 @@ class UsuarioController extends Controller
         return redirect()->back()->with('success', 'Usuario registrado correctamente.');
     }
 
+    public function ver_usuarios_db()
+    {
+        $listarUsuarios = Usuario::all();
+        return view('usuarios.verUsuarios', compact('listarUsuarios'));
+    }
+
+    //modificar
+    public function actualizar_usuario(Request $request, $id)
+    {
+        // Buscar el usuario por ID
+        $usuario = Usuario::find($id);
+
+        if (!$usuario) {
+            return redirect()->back()->with('error', 'Usuario no encontrado.');
+        }
+
+        // Validar los datos
+        $request->validate([
+            'edad' => 'required|integer|min:1|max:150',
+            'genero' => 'required|string|max:50',
+            'departamento_nacimiento' => 'required|string|max:255',
+            'rol' => 'required|string|max:50',
+        ]);
+
+        // Actualizar los campos
+        $usuario->edad = $request->edad;
+        $usuario->genero = $request->genero;
+        $usuario->departamento_nacimiento = $request->departamento_nacimiento;
+        $usuario->rol = $request->rol;
+
+        // Guardar los cambios
+        $usuario->save();
+
+        return redirect()->back()->with('success', 'Usuario actualizado correctamente.');
+    }
+
 }
