@@ -20,5 +20,16 @@ class Usuario extends Authenticatable // Cambiamos Eloquent a Authenticatable
         'contrasena',
     ];
 
+    public function publicaciones()
+    {
+        return $this->hasMany(Publicacion::class, 'user_name', 'user_name');
+    }
+    
+    public function comentarios()
+    {
+        return $this->hasMany(Comentario::class, 'user_name', 'user_name');
+    }
+
+
 
 }

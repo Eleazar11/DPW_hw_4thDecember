@@ -12,4 +12,12 @@ public function publicacion() {
     return $this->belongsTo(Publicacion::class, 'publicacion_id');
 }
 
+// app/Models/Comentario.php
+
+public function usuario()
+{
+    return $this->belongsTo(Usuario::class, 'user_name', 'user_name');
+}
+
+
 }

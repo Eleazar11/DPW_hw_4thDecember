@@ -72,4 +72,36 @@ class UsuarioController extends Controller
         return redirect()->back()->with('success', 'Usuario actualizado correctamente.');
     }
 
+    // app/Http/Controllers/UsuarioController.php
+
+public function eliminar_usuario($id)
+{
+    // Buscar el usuario por ID
+    $usuario = Usuario::find($id);
+
+    if (!$usuario) {
+        return redirect()->back()->with('error', 'Usuario no encontrado.');
+    }
+
+    // Eliminar publicaciones del usuario
+    $publicaciones = $usuario->publicaciones; // Obtiene las publicaciones del usuario
+    foreach ($publicaciones as $publicacion) {
+        // Eliminar comentarios asociados a la publicación
+        $publicacion->comentarios()->delete();
+        $publicacion->delete(); // Eliminar la publicación
+    }
+
+    // Eliminar comentarios del usuario
+    $comentarios = $usuario->comentarios;
+    foreach ($comentarios as $comentario) {
+        $comentario->delete();
+    }
+
+    // Finalmente, eliminar el usuario
+    $usuario->delete();
+
+    return redirect()->back()->with('success', 'Usuario eliminado correctamente.');
+}
+
+
 }

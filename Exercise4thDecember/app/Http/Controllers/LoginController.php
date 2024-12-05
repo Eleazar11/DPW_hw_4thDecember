@@ -25,8 +25,8 @@ class LoginController extends Controller
     }
 
     public function eliminar_usuarios_view() {
-        $listarUsuarios = Usuario::all();
-        return view('usuarios.eliminarUsuarios', compact('listarUsuarios'));
+        $usuarios = Usuario::all();
+        return view('usuarios.eliminarUsuarios', compact('usuarios'));
     }
 
 

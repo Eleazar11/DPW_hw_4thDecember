@@ -69,5 +69,6 @@ Route::delete('/eliminar_comentario/{id}', [ComentarioController::class, 'elimin
 
 //eliminar las publis
 Route::delete('/eliminar_publicacion/{id}', [PublicacionController::class, 'eliminar_publicacion']);
-
+//eliminar usuario
+Route::delete('/eliminar_usuario/{id}', [UsuarioController::class, 'eliminar_usuario']);
 
